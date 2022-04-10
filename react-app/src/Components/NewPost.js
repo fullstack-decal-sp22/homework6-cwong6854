@@ -1,3 +1,4 @@
+import axios from "axios";
 import {useState} from "react";
 
 const NewPost = () => {
@@ -11,8 +12,19 @@ const NewPost = () => {
       title,
       body
     })
-  }
+    const data = {
+      "id": id,
+      "title": title,
+      "body": body
+    };  
+  const url = "http://localhost:3002/post";
 
+  axios
+    .post(url, data)
+    .then((response) => {console.log(response);})
+    .catch((error) => {console.log(error);});
+  };
+  
   return <div>
     <div>
       <input type="text" placeholder="ID" value={id} onChange={e => setId(e.target.value)} />

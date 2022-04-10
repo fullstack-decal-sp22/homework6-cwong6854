@@ -5,12 +5,14 @@ import NewPost from "./NewPost";
 
 const Feed = () => {
 
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
+
+  const url = "http://localhost:3002/posts";
 
   const getPostData = () => {
     // fetch data
     axios
-    .get("http://localhost:3002/posts")
+    .get(url, data)
     //  wait for promise to be resolved using .then, set state variable data to returned data
     .then((data) => setData(data.data))
     .catch((error) => console.log(error));
@@ -18,16 +20,15 @@ const Feed = () => {
 
   useEffect(() => {
     getPostData();
-  }, []);
+  }, );
 
   return (
     <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
       {
         data.map(d =>
-          <Post title={d.title} body={d.body} key={d.id} />
+          <Post title={d.title} body={d.body} key={d.id} comments={d.comments}/>
         )
       }
-      
       <NewPost/>
     </div>
   )
