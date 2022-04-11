@@ -26,7 +26,7 @@ const Feed = () => {
     <div style={{ maxWidth: '600px', marginLeft: 'auto', marginRight: 'auto'}}>
       {
         data.map(d =>
-          <Post title={d.title} body={d.body} key={d.id} comments={d.comments}/>
+          <Post title={d.title} body={d.body} key={d.id} comments={d.comments} postId={d.id}/>
         )
       }
       <NewPost/>
