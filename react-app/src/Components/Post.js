@@ -12,9 +12,8 @@ const Post = ({ title, body, postId, comments}) => {
     {comments.map(d => {
       return <Comment comments={d}/>
     })}
-    <NewComment postId={postId} />
+    <NewComment postId={postId}/>
   </div>
-  
   )
 }
 

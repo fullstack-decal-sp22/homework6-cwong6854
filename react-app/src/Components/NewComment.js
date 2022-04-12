@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 
-const NewComment = ({postId, comments}) => {
+const NewComment = ({postId}) => {
     const [comment, setComment] = useState();
 
     const onSubmit = () => {
@@ -9,22 +9,24 @@ const NewComment = ({postId, comments}) => {
             comment
         });
         const data = {
-            "comments": comment
+            "newComment": comment
         }
+
+        const url = `http://localhost:3002/post/${postId}/comment`
         axios
-        .post(`http://localhost:3002/post/${postId}/comment`, data)
-        .then((response) => console.log(response), setComment(data.data))
+        .post(url, data)
+        .then((response) => console.log(response))
         .catch((error) => console.log(error));
         }
 
-    return <div>
+    return (<div>
         <div>
-        <input type="text" placeholder="comment" value={comments} onChange={e => setComment(e.target.value)} />
+            <input type="text" placeholder="comment" value={comment} onChange={e => setComment(e.target.value)} />
         </div>
         <button style={{ marginTop: '4px'}} onClick={onSubmit}>
-        Submit
+            Submit
         </button>
-    </div>
+    </div>)
 }
 
 export default NewComment;

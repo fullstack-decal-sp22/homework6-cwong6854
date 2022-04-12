@@ -24,7 +24,9 @@ const NewPost = () => {
     .then((response) => {console.log(response);})
     .catch((error) => {console.log(error);});
   };
-  
+
+
+
   return <div>
     <div>
       <input type="text" placeholder="ID" value={id} onChange={e => setId(e.target.value)} />
